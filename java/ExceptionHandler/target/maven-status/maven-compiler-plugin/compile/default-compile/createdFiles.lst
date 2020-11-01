@@ -1,6 +1,0 @@
-mx\ryo\xoloit\utils\exception\DevelLogicException.class
-mx\ryo\xoloit\utils\exception\devel\CaseNotImplementedException.class
-mx\ryo\xoloit\utils\exception\devel\DataNotFoundException.class
-mx\ryo\xoloit\utils\exception\devel\FailedProcessException.class
-mx\ryo\xoloit\utils\exception\BusinessLogicException.class
-mx\ryo\xoloit\utils\exception\devel\InvalidValueException.class
