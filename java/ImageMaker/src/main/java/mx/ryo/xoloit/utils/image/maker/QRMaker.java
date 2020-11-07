@@ -16,6 +16,29 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 public class QRMaker {
+
+	/**
+	 * Tamano para el codigo QR.
+	 */
+	private int size;
+
+	/**
+	 * El tamaño de la imagen sera de 200 por default
+	 */
+	public QRMaker() {
+		super();
+		this.size = 200;
+	}
+	
+	/**
+	 * 
+	 * @param size Tamano de la imagen.
+	 */
+	public QRMaker(int size) {
+		super();
+		this.size = size;
+	}
+
 	/**
 	 * 
 	 * @param encodeTxt
@@ -25,7 +48,7 @@ public class QRMaker {
 	 * @throws WriterException
 	 * @throws IllegalArgumentException El {@code encodeTxt} no debe ser blanco. {@link StringUtils#isNotBlank(CharSequence)} 
 	 */
-	public static final Image generarQRCode(String encodeTxt, int size) throws IOException, WriterException, IllegalArgumentException {
+	public final Image generarQRCode(String encodeTxt) throws IOException, WriterException, IllegalArgumentException {
 		if (StringUtils.isNotBlank(encodeTxt)) {
 			// Configuracion del QR
 			Map<EncodeHintType, Object> hintMap = new EnumMap<EncodeHintType, Object>(EncodeHintType.class);
@@ -35,10 +58,18 @@ public class QRMaker {
 
 			// Generación del QR
 			QRCodeWriter qrCodeWriter = new QRCodeWriter();
-			BitMatrix byteMatrix = qrCodeWriter.encode(encodeTxt, BarcodeFormat.QR_CODE, size, size, hintMap);
+			BitMatrix byteMatrix = qrCodeWriter.encode(encodeTxt, BarcodeFormat.QR_CODE, this.size, this.size, hintMap);
 			return MatrixToImageWriter.toBufferedImage(byteMatrix);
 		} else {
 			throw new IllegalArgumentException(String.format("El valor=<%1$s> es invalido.", String.valueOf(encodeTxt)));
 		}
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 }

@@ -19,7 +19,7 @@ class QRMakerTest {
 	void testGenerarQRCode() {
 		Image imgQr;
 		try {
-			imgQr = QRMaker.generarQRCode("Hola mundo", 250);
+			imgQr = new QRMaker().generarQRCode("Hola mundo");
 			BufferedImage bi = (BufferedImage) imgQr;
 			File outputfile = new File("/swtools/Temp/saved.png");
 
