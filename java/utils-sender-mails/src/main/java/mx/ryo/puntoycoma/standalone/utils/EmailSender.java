@@ -20,7 +20,8 @@ import org.springframework.stereotype.Component;
 
 @Component("emailSender")
 public class EmailSender {
-	public final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private static final Logger infoLogger = LoggerFactory.getLogger("infoLogger");
+	private static final Logger errorLogger = LoggerFactory.getLogger("errorLogger");
 
 	@Autowired
 	private JavaMailSender javaMailSender;
@@ -28,8 +29,9 @@ public class EmailSender {
 	private String fromMail;
 
 	@Async
-	public void enviarNotificacion(String to, String notificacion, String urlRedirect) {
-		StringBuilder bldr = new StringBuilder();
+	public void enviarNotificacion(String[] to, String notificacion, String urlRedirect) {
+		StringBuilder bldr = new StringBuilder(), logResume = new StringBuilder("Enviando correo");
+		logResume.append("destinatario:<").append(String.join(";", to)).append(">");
 		String str;
 
 		URL url = this.getClass().getResource("/templates/email-notificacion-mige-said.html");
@@ -46,17 +48,20 @@ public class EmailSender {
 			MimeMessageHelper helper;
 			helper = new MimeMessageHelper(msg, false);
 			helper.setFrom(fromMail);
-			helper.setTo(new String[] { to });
+			helper.setTo(to);
 			helper.setSubject("MIGE | SAID | Notificaciones");
 			helper.setText(bldr.toString().replace("_REPLACE_MSG_INFORMATIVO_", notificacion)
 					.replace("_REPLACE_URL_REDIRECT_", urlRedirect), true);
 
 			javaMailSender.send(msg);
+			logResume.append(";info:<OK>");
+			this.infoLogger.info(logResume.toString());
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			this.errorLogger.error(  logResume.append(";error:<").append(e1.getMessage()).append(">").toString()  );
 		} catch (MessagingException e) {
 			e.printStackTrace();
+			this.errorLogger.error(  logResume.append(";error:<").append(e.getMessage()).append(">").toString()  );
 		}
 	}
 

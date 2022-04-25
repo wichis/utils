@@ -5,7 +5,7 @@
 		<Property name="LOG_POST_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSS} %C{1}.%M(%F:%L) %m%n
 		</Property>
 		<Property name="PATH_OPE_HOME">/opt/web-apps/logs</Property>
-		<Property name="PATH_SRV_HOME">/opt/web-apps/api-ingresoms/logs</Property>
+		<Property name="PATH_SRV_HOME">/opt/web-apps/logs</Property>
 	</Properties>
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
@@ -26,7 +26,7 @@
 		</RollingFile>
 		<RollingFile name="infoMonitorLog"
 			fileName="${PATH_OPE_HOME}/monitor.ingresoms.log"
-			filePattern="${PATH_OPE_HOME}/apiingresoms.info.%d{yyyy-MM-dd}(%i).log">
+			filePattern="${PATH_OPE_HOME}/standalone-emails.info.%d{yyyy-MM-dd}(%i).log">
 			<PatternLayout pattern="${LOG_PATTERN}" />
 			<Policies>
 				<SizeBasedTriggeringPolicy size="10MB" />
@@ -36,8 +36,8 @@
 				onMatch="ACCEPT" onMismatch="DENY" />
 		</RollingFile>
 		<RollingFile name="errorMonitorLog"
-			fileName="${PATH_OPE_HOME}/apiingresoms.error.log"
-			filePattern="${PATH_OPE_HOME}/apiingresoms.error.%d{yyyy-MM-dd}(%i).log">
+			fileName="${PATH_OPE_HOME}/standalone-emails.error.log"
+			filePattern="${PATH_OPE_HOME}/standalone-emails.error.%d{yyyy-MM-dd}(%i).log">
 			<PatternLayout pattern="${LOG_PATTERN}" />
 			<Policies>
 				<SizeBasedTriggeringPolicy size="10MB" />
