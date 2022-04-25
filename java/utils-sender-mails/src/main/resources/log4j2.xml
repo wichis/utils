@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSS} %r %p %C{1}.%M(%F:%L) %m%n</Property>
+		<Property name="LOG_POST_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSS} %C{1}.%M(%F:%L) %m%n
+		</Property>
+		<Property name="PATH_OPE_HOME">/opt/web-apps/logs</Property>
+		<Property name="PATH_SRV_HOME">/opt/web-apps/api-ingresoms/logs</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<RollingFile name="PostMethodDetailMonitor"
+			fileName="${PATH_SRV_HOME}/post_request.monitor.log"
+			filePattern="${PATH_SRV_HOME}/post_request.%d{yyyy-MM-dd}(%i).monitor.log">
+			<PatternLayout pattern="${LOG_POST_PATTERN}" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+			<LevelRangeFilter minLevel="WARN" maxLevel="INFO"
+				onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		<RollingFile name="infoMonitorLog"
+			fileName="${PATH_OPE_HOME}/monitor.ingresoms.log"
+			filePattern="${PATH_OPE_HOME}/apiingresoms.info.%d{yyyy-MM-dd}(%i).log">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+			<LevelRangeFilter minLevel="WARN" maxLevel="INFO"
+				onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+		<RollingFile name="errorMonitorLog"
+			fileName="${PATH_OPE_HOME}/apiingresoms.error.log"
+			filePattern="${PATH_OPE_HOME}/apiingresoms.error.%d{yyyy-MM-dd}(%i).log">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+			<LevelRangeFilter minLevel="OFF" maxLevel="ERROR"
+				onMatch="ACCEPT" onMismatch="DENY" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="postReqLogger" additivity="false">
+			<AppenderRef ref="PostMethodDetailMonitor" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="infoLogger" additivity="false">
+			<AppenderRef ref="infoMonitorLog" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="errorLogger" additivity="false">
+			<AppenderRef ref="errorMonitorLog" />
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>
