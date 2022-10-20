@@ -1,0 +1,21 @@
+HELP.md
+# Archivos binarios
+target/
+bin/
+build/
+# Siempre se deben de subir los datos de codigo fuente.
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### IDE Configuration ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### VS Code ###
+.vscode/
