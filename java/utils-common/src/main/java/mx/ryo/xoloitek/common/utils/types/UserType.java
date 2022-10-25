@@ -1,0 +1,9 @@
+package mx.ryo.xoloitek.common.utils.types;
+
+public enum UserType {
+	U000000000000ROOT,
+	U0000000DEVELOPER,
+	U0000000000TESTER,
+	U0000PRODUCTOWNER,
+	U000000000UNKNOWN;
+}
