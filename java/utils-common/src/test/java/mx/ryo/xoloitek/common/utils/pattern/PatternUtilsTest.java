@@ -5,6 +5,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import mx.ryo.xoloitek.commons.utils.pattern.ConceptoType;
+import mx.ryo.xoloitek.commons.utils.pattern.PatternUtils;
+
 public class PatternUtilsTest {
 
 	@Test

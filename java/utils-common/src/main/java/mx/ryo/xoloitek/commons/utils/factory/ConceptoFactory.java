@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.factory;
+package mx.ryo.xoloitek.commons.utils.factory;
 
 public class ConceptoFactory {
 	

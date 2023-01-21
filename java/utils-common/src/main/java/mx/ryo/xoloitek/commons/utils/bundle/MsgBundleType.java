@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.bundle;
+package mx.ryo.xoloitek.commons.utils.bundle;
 
 public enum MsgBundleType {
 	/**

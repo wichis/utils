@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.pattern;
+package mx.ryo.xoloitek.commons.utils.pattern;
 
 /**
  * Formatos de los conceptos usados en el manejo de datos, 

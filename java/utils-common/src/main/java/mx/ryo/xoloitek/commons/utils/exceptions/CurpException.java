@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.exceptions;
+package mx.ryo.xoloitek.commons.utils.exceptions;
 
 public class CurpException extends CommonUtilsException {
 	/**

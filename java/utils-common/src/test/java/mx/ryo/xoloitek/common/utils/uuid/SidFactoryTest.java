@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import mx.ryo.xoloitek.common.utils.pattern.PatternUtils;
+import mx.ryo.xoloitek.commons.utils.pattern.PatternUtils;
 
 public class SidFactoryTest {
 	@Test

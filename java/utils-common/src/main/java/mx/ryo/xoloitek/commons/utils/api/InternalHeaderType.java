@@ -1,40 +1,41 @@
-package mx.ryo.xoloitek.common.utils.api;
+package mx.ryo.xoloitek.commons.utils.api;
 
 public enum InternalHeaderType {
 	/**
-	 * Con Respuesta Oculta
+	 * Cuando un servicio envié un 204-No Content como respuesta, podrá enviarse
+	 * este header para proporcionar mayor información.
 	 */
-	CRO("X-XOLO-CRO"),
+	X_CRO("X-XOLO-Cro"),
 	/**
 	 * Identificador del usuario
 	 */
-	USER("X-XOLO-User"), 
+	X_USER("X-XOLO-User"),
 	/**
 	 * Identificador del role
 	 */
-	ROLE("X-XOLO-Role"), 
+	X_ROLE("X-XOLO-Role"),
 	/**
 	 * Identificador de la aplicacion
 	 */
-	APP("X-XOLO-App"),
+	X_APP("X-XOLO-App"),
 	/**
-	 * Identificador de la pantalla
-	 */	
-	REQUEST_ID("X-XOLO-Request-Id"),
+	 * Request UUID to track operation on log files.
+	 */
+	X_REQUEST_ID("X-XOLO-Request-Id"),
 	/**
-	 * Mensaje que se podra msotrar en la notificacion
-	 */	
-	SESSION_ID("X-XOLO-Session-Id"),
+	 * Request UUID to identify and specific session opened on a sytem, this session
+	 * has no relation with login session open.
+	 */
+	X_SESSION_ID("X-XOLO-Session-Id"),
 	/**
-	 * Modo de notificacion
-	 * {modal, tip, toast}
-	 */	
-	USER_DEVICE_ID("X-XOLO-User-Device-Id"),
+	 * Request device name for identify it.
+	 */
+	X_USER_DEVICE_ID("X-XOLO-User-Device-Id"),
 	/**
-	 * Siguiente accion
-	 * {continue, confirm, warn, info, error}
-	 */	
-	REQUEST_TIME("X-XOLO-Request-Time"),;
+	 * Request UUID to identify and specific session opened on a sytem, this session
+	 * has no relation with login session open.
+	 */
+	X_REQUEST_TIME("X-XOLO-Request-Time");
 
 	private String key;
 

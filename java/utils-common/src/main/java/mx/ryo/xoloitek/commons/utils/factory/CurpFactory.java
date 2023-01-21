@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.factory;
+package mx.ryo.xoloitek.commons.utils.factory;
 
 import java.time.LocalDate;
 import java.util.regex.Matcher;
@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 
-import mx.ryo.xoloitek.common.utils.exceptions.CurpException;
+import mx.ryo.xoloitek.commons.utils.exceptions.CurpException;
 
 
 public class CurpFactory {

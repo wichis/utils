@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.types;
+package mx.ryo.xoloitek.commons.utils.types;
 
 public enum UserType {
 	U000000000000ROOT,

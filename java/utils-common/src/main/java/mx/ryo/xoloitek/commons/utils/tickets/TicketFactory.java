@@ -1,9 +1,9 @@
-package mx.ryo.xoloitek.common.utils.tickets;
+package mx.ryo.xoloitek.commons.utils.tickets;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import mx.ryo.xoloitek.common.utils.types.AppType;
+import mx.ryo.xoloitek.commons.utils.types.AppType;
 
 public class TicketFactory {
 	private final static String FORMAT = "%1$s%2$s%3$s";
@@ -15,7 +15,7 @@ public class TicketFactory {
 	 */
 	public final static String generar(AppType appType, String usuario) {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmmssSSS");
-		System.out.println(String.format(FORMAT, appType.getCve(), format.format(LocalDateTime.now()), usuario));
-		return String.format(FORMAT, appType.getCve(), format.format(LocalDateTime.now()), usuario);
+		System.out.println(String.format(FORMAT, appType.getEnnum(), format.format(LocalDateTime.now()), usuario));
+		return String.format(FORMAT, appType.getEnnum(), format.format(LocalDateTime.now()), usuario);
 	}
 }

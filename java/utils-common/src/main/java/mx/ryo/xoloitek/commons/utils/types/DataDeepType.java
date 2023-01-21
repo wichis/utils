@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.types;
+package mx.ryo.xoloitek.commons.utils.types;
 
 /**
  * Cataloga la profundidad de de los datos que se estan solicitando.

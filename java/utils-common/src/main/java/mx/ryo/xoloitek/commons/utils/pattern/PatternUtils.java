@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.pattern;
+package mx.ryo.xoloitek.commons.utils.pattern;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

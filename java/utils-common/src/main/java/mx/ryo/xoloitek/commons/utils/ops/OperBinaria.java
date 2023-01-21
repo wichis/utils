@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.ops;
+package mx.ryo.xoloitek.commons.utils.ops;
 
 public class OperBinaria {
 	

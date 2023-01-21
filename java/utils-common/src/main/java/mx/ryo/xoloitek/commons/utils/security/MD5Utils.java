@@ -1,4 +1,4 @@
-package mx.ryo.xoloitek.common.utils.security;
+package mx.ryo.xoloitek.commons.utils.security;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
