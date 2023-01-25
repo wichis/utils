@@ -2,27 +2,20 @@ package mx.ryo.xoloitek.commons.exception.devel;
 
 import org.springframework.http.HttpStatus;
 
+import lombok.Getter;
 import mx.ryo.xoloitek.commons.exception.DevelLogicException;
+import mx.ryo.xoloitek.commons.exception.dto.ApiErrorResponseDto;
 import mx.ryo.xoloitek.commons.exception.type.LevelError;
+import mx.ryo.xoloitek.commons.exception.utils.StringCodeError;
 
+@Getter
 public class InvalidValueException extends DevelLogicException {
 
 	private static final long serialVersionUID = 1L;
-	private final static String DEFAULT_ERR_MSG = "El valor contenido es invalido";
-	private LevelError levelError;
 	private HttpStatus httpResponse;
-	
-	public InvalidValueException() {
-		super(DEFAULT_ERR_MSG);
-		this.levelError = LevelError.INTERNAL_KNOWN;
-		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
-	}
-	
-	public InvalidValueException(String errMsg) {
-		super(errMsg);
-		this.levelError = LevelError.INTERNAL_KNOWN;
-		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
-	}
+	private StringCodeError scode;
+	private ApiErrorResponseDto apiResponse;
+	private static final String TO_BE_DEFINED = "TBD";
 
 	/**
 	 * The internal server error was be responsed.
@@ -30,15 +23,19 @@ public class InvalidValueException extends DevelLogicException {
 	 * @param levelError Provide
 	 * @param errMsg
 	 */
-	public InvalidValueException(LevelError levelError, String errMsg) {
-		super(errMsg);
-		this.levelError = levelError;
-		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
+	public InvalidValueException(String technicalDetails) {
+		super(new StringCodeError(LevelError.INTERNAL_KNOWN, 1), technicalDetails);
+		this.scode = super.getScode();
+		this.httpResponse = HttpStatus.BAD_REQUEST;
+		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
+				.technicalDetails(technicalDetails).build();
 	}
 
-	public InvalidValueException(LevelError levelError, HttpStatus httpResponse, String errMsg) {
-		super(errMsg);
-		this.levelError = levelError;
+	public InvalidValueException( HttpStatus httpResponse, String technicalDetails) {
+		super(new StringCodeError(LevelError.INTERNAL_KNOWN, 1), httpResponse, technicalDetails);
+		this.scode = super.getScode();;
 		this.httpResponse = httpResponse;
+		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
+				.technicalDetails(technicalDetails).build();
 	}
 }

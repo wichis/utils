@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>mx.ryo.xoloitek.commons</groupId>
-	<artifactId>internal-exception</artifactId>
+	<artifactId>mx-lib-internal-exception-dotp</artifactId>
 	<version>1.0.0</version>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
@@ -28,6 +28,18 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>3.0.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.9.1</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 </project>

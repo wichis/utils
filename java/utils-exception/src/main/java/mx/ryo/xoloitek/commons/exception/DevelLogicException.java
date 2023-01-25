@@ -2,44 +2,50 @@ package mx.ryo.xoloitek.commons.exception;
 
 import org.springframework.http.HttpStatus;
 
+import lombok.Getter;
+import mx.ryo.xoloitek.commons.exception.dto.ApiErrorResponseDto;
 import mx.ryo.xoloitek.commons.exception.type.LevelError;
+import mx.ryo.xoloitek.commons.exception.utils.MsgBundleUtils;
+import mx.ryo.xoloitek.commons.exception.utils.StringCodeError;
 
+@Getter
 public class DevelLogicException extends Exception {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final static String DEFAULT_ERR_MSG = "¡Ups! Algo falló. Reportelo inmediatamente.";
-	protected LevelError levelError;
-	
-	protected HttpStatus httpResponse;
+	private StringCodeError scode;
+	private HttpStatus httpResponse;
+	private ApiErrorResponseDto apiResponse;
+	private static final String TO_BE_DEFINED = "TBD";
 
 	public DevelLogicException() {
-		super(DEFAULT_ERR_MSG);
-		this.levelError = LevelError.INTERNAL_UNKNOWN;
+		super(MsgBundleUtils.useResponse("business_logic.default.resume"));
+		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, 0);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
+		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
+				.technicalDetails(MsgBundleUtils.useResponse("development_logic.default.technical")).build();
 	}
 
-	public DevelLogicException(String errMsg) {
-		super(errMsg);
-		this.levelError = LevelError.INTERNAL_KNOWN;
-		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
-	}
-
-	public DevelLogicException(LevelError levelError, HttpStatus httpResponse, String errMsg) {
-		super(errMsg);
-		this.levelError = levelError;
-		this.httpResponse = httpResponse;
-	}
-	
 	/**
 	 * The internal server error was be responsed.
-	 * @param levelError Provide 
+	 * 
+	 * @param levelError Provide
 	 * @param errMsg
 	 */
-	public DevelLogicException(LevelError levelError, String errMsg) {
-		super(errMsg);
-		this.levelError = levelError;
+	public DevelLogicException(StringCodeError scode, String technicalDetails) {
+		super(technicalDetails);
+		this.scode = scode;
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
+		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
+				.technicalDetails(technicalDetails).build();
+	}
+
+	public DevelLogicException(StringCodeError scode, HttpStatus httpResponse, String technicalDetails) {
+		super(technicalDetails);
+		this.scode = scode;
+		this.httpResponse = httpResponse;
+		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
+				.technicalDetails(technicalDetails).build();
 	}
 }
