@@ -18,32 +18,41 @@ public class DevelLogicException extends Exception {
 	private HttpStatus httpResponse;
 	private ApiErrorResponseDto apiResponse;
 	private static final String TO_BE_DEFINED = "TBD";
+	private static final Integer CODE_SERIE = 1;
 
+	/**
+	 * 
+	 */
 	public DevelLogicException() {
 		super(MsgBundleUtils.useResponse("business_logic.default.resume"));
-		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, 0);
+		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(MsgBundleUtils.useResponse("development_logic.default.technical")).build();
 	}
 
 	/**
-	 * The internal server error was be responsed.
 	 * 
-	 * @param levelError Provide
-	 * @param errMsg
+	 * @param lvlError 
+	 * @param technicalDetails
 	 */
-	public DevelLogicException(StringCodeError scode, String technicalDetails) {
+	public DevelLogicException(LevelError lvlError, String technicalDetails) {
 		super(technicalDetails);
-		this.scode = scode;
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
 	}
 
-	public DevelLogicException(StringCodeError scode, HttpStatus httpResponse, String technicalDetails) {
+	/**
+	 * 
+	 * @param lvlError
+	 * @param httpResponse
+	 * @param technicalDetails
+	 */
+	public DevelLogicException(LevelError lvlError, HttpStatus httpResponse, String technicalDetails) {
 		super(technicalDetails);
-		this.scode = scode;
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = httpResponse;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();

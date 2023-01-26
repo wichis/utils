@@ -18,10 +18,11 @@ public class BusinessLogicException extends Exception {
 	private HttpStatus httpResponse;
 	private ApiErrorResponseDto apiResponse;
 	private static final String TO_BE_DEFINED = "TBD";
-
+	private static final Integer CODE_SERIE = 9999;
+	
 	public BusinessLogicException() {
 		super(MsgBundleUtils.useResponse("business_logic.default.resume"));
-		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, 0);
+		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(MsgBundleUtils.useResponse("business_logic.default.technical")).build();

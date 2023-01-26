@@ -16,6 +16,7 @@ public class InvalidValueException extends DevelLogicException {
 	private StringCodeError scode;
 	private ApiErrorResponseDto apiResponse;
 	private static final String TO_BE_DEFINED = "TBD";
+	private static final Integer CODE_SERIE = 2;
 
 	/**
 	 * The internal server error was be responsed.
@@ -23,17 +24,17 @@ public class InvalidValueException extends DevelLogicException {
 	 * @param levelError Provide
 	 * @param errMsg
 	 */
-	public InvalidValueException(String technicalDetails) {
-		super(new StringCodeError(LevelError.INTERNAL_KNOWN, 1), technicalDetails);
-		this.scode = super.getScode();
+	public InvalidValueException(LevelError lvlError, String technicalDetails) {
+		super(lvlError, technicalDetails);
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = HttpStatus.BAD_REQUEST;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
 	}
 
-	public InvalidValueException( HttpStatus httpResponse, String technicalDetails) {
-		super(new StringCodeError(LevelError.INTERNAL_KNOWN, 1), httpResponse, technicalDetails);
-		this.scode = super.getScode();;
+	public InvalidValueException(LevelError lvlError, HttpStatus httpResponse, String technicalDetails) {
+		super(lvlError, httpResponse, technicalDetails);
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = httpResponse;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();

@@ -18,24 +18,24 @@ public class CaseNotImplementedException extends DevelLogicException {
 	private StringCodeError scode;
 	private ApiErrorResponseDto apiResponse;
 	private static final String TO_BE_DEFINED = "TBD";
-
+	private static final Integer CODE_SERIE = 3;
 	/**
 	 * The internal server error was be responsed.
 	 * 
 	 * @param levelError Provide
 	 * @param errMsg
 	 */
-	public CaseNotImplementedException( String technicalDetails) {
-		super(new StringCodeError(LevelError.INTERNAL_KNOWN, 1), technicalDetails);
-		this.scode = super.getScode();
+	public CaseNotImplementedException(LevelError lvlError,  String technicalDetails) {
+		super(lvlError, technicalDetails);
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
 	}
 
-	public CaseNotImplementedException( HttpStatus httpResponse, String technicalDetails) {
-		super(new StringCodeError(LevelError.INTERNAL_KNOWN, 1), httpResponse, technicalDetails);
-		this.scode = super.getScode();
+	public CaseNotImplementedException(LevelError lvlError, HttpStatus httpResponse, String technicalDetails) {
+		super(lvlError, httpResponse, technicalDetails);
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = httpResponse;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();

@@ -18,10 +18,11 @@ public class MissingRuleBusException extends BusinessLogicException {
 	private StringCodeError scode;
 	private ApiErrorResponseDto apiResponse;
 	private static final String TO_BE_DEFINED = "TBD";
+	private static final Integer CODE_SERIE = 9998;
 
-	public MissingRuleBusException() {
-		super(new StringCodeError(LevelError.INTERNAL_UNKNOWN, 1), MsgBundleUtils.useResponse("missing_rule.default.technical"));
-		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, 1);
+	public MissingRuleBusException(LevelError lvlError) {
+		super(new StringCodeError(lvlError, CODE_SERIE), MsgBundleUtils.useResponse("missing_rule.default.technical"));
+		this.scode = super.getScode();
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(MsgBundleUtils.useResponse("missing_rule.default.technical")).build();
@@ -33,17 +34,17 @@ public class MissingRuleBusException extends BusinessLogicException {
 	 * @param levelError Provide
 	 * @param errMsg
 	 */
-	public MissingRuleBusException(StringCodeError scode, String technicalDetails) {
-		super(scode, technicalDetails);
-		this.scode = scode;
+	public MissingRuleBusException(LevelError lvlError, String technicalDetails) {
+		super(new StringCodeError(lvlError, CODE_SERIE), technicalDetails);
+		this.scode = super.getScode();
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
 	}
 
-	public MissingRuleBusException(StringCodeError scode, HttpStatus httpResponse, String technicalDetails) {
-		super(scode, httpResponse, technicalDetails);
-		this.scode = scode;
+	public MissingRuleBusException(LevelError lvlError, HttpStatus httpResponse, String technicalDetails) {
+		super(new StringCodeError(lvlError, CODE_SERIE), httpResponse, technicalDetails);
+		this.scode = super.getScode();
 		this.httpResponse = httpResponse;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
