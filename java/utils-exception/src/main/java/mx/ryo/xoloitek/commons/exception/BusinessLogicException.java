@@ -21,7 +21,7 @@ public class BusinessLogicException extends Exception {
 	private static final Integer CODE_SERIE = 9999;
 	
 	public BusinessLogicException() {
-		super(MsgBundleUtils.useResponse("business_logic.default.resume"));
+		super(MsgBundleUtils.useResponse("business_logic.default.technical"));
 		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
@@ -34,17 +34,17 @@ public class BusinessLogicException extends Exception {
 	 * @param levelError Provide
 	 * @param errMsg
 	 */
-	public BusinessLogicException(StringCodeError scode, String technicalDetails) {
+	public BusinessLogicException(LevelError lvlError, String technicalDetails) {
 		super(technicalDetails);
-		this.scode = scode;
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
 	}
 
-	public BusinessLogicException(StringCodeError scode, HttpStatus httpResponse, String technicalDetails) {
+	public BusinessLogicException(LevelError lvlError, HttpStatus httpResponse, String technicalDetails) {
 		super(technicalDetails);
-		this.scode = scode;
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = httpResponse;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();

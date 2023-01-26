@@ -21,8 +21,8 @@ public class MissingRuleBusException extends BusinessLogicException {
 	private static final Integer CODE_SERIE = 9998;
 
 	public MissingRuleBusException(LevelError lvlError) {
-		super(new StringCodeError(lvlError, CODE_SERIE), MsgBundleUtils.useResponse("missing_rule.default.technical"));
-		this.scode = super.getScode();
+		super(lvlError, MsgBundleUtils.useResponse("missing_rule.default.technical"));
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(MsgBundleUtils.useResponse("missing_rule.default.technical")).build();
@@ -35,16 +35,16 @@ public class MissingRuleBusException extends BusinessLogicException {
 	 * @param errMsg
 	 */
 	public MissingRuleBusException(LevelError lvlError, String technicalDetails) {
-		super(new StringCodeError(lvlError, CODE_SERIE), technicalDetails);
-		this.scode = super.getScode();
+		super(lvlError, technicalDetails);
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();
 	}
 
 	public MissingRuleBusException(LevelError lvlError, HttpStatus httpResponse, String technicalDetails) {
-		super(new StringCodeError(lvlError, CODE_SERIE), httpResponse, technicalDetails);
-		this.scode = super.getScode();
+		super(lvlError, httpResponse, technicalDetails);
+		this.scode = new StringCodeError(lvlError, CODE_SERIE);
 		this.httpResponse = httpResponse;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)
 				.technicalDetails(technicalDetails).build();

@@ -24,7 +24,7 @@ public class DevelLogicException extends Exception {
 	 * 
 	 */
 	public DevelLogicException() {
-		super(MsgBundleUtils.useResponse("business_logic.default.resume"));
+		super(MsgBundleUtils.useResponse("business_logic.default.technical"));
 		this.scode = new StringCodeError(LevelError.INTERNAL_UNKNOWN, CODE_SERIE);
 		this.httpResponse = HttpStatus.INTERNAL_SERVER_ERROR;
 		this.apiResponse = ApiErrorResponseDto.builder().scode(this.scode.format()).resume(TO_BE_DEFINED)

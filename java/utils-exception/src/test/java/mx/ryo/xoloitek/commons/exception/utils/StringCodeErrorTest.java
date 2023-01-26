@@ -1,6 +1,6 @@
 package mx.ryo.xoloitek.commons.exception.utils;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
