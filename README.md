@@ -3,10 +3,10 @@ Almacenar todas las utilerias que ofrecezcan una funcionalidad genérica o recur
 
 ## Lenguajes
 - Java
-- Javascript
-- Typescript
-- css
-- html
+- JavaScript
+- TypeScript
+- CSS
+- HTML
 
 
 ## Contenidos disponibles
