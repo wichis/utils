@@ -1,0 +1,22 @@
+.edomex-mapa {
+  width: 70%;
+  margin: auto;
+  background: #dedede;
+}
+
+.edomex-mapa-path {
+  fill: #f0e3d7;
+  fill-opacity: 1;
+  fill-rule: evenodd;
+  stroke: black;
+  stroke-width: 0.666666;
+  stroke-linecap: butt;
+  stroke-linejoin: miter;
+  stroke-miterlimit: 4;
+  stroke-dasharray: none;
+  stroke-opacity: 1;
+}
+
+.edomex-mapa-path:hover {
+  fill: #4169e1;
+}

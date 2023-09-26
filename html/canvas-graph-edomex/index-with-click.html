@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <script type="application/javascript">
+
+  </script>
+</head>
+
+<body onload="cargarDibujo();">
+  <canvas id="dibujo" width="700" height="700" onclick="cambiarColor();" onmousemove="setCoords(event);"
+    style="position: relative; border: 0;"></canvas>
+  <hr />
+  <div id="colorElegido" style="display: block; width: 100px; height: 100px; border: 1px solid #000;"></div>
+  <p id="coords"></p>
+  <hr />
+  <button style="display: block; width: 20px; height: 20px; border: 1px solid #000; background-color: #FFFFFF;"
+    onclick="setColor('#FFFFFF');"></button>
+  <button style="display: block; width: 20px; height: 20px; border: 1px solid #000; background-color: #FF0000;"
+    onclick="setColor('#FF0000');"></button>
+  <button style="display: block; width: 20px; height: 20px; border: 1px solid #000; background-color: #00FF00;"
+    onclick="setColor('#00FF00');"></button>
+  <button style="display: block; width: 20px; height: 20px; border: 1px solid #000; background-color: #0000FF;"
+    onclick="setColor('#0000FF');"></button>
+  <button style="display: block; width: 20px; height: 20px; border: 1px solid #000; background-color: #000000;"
+    onclick="setColor('#000000');"></button>
+</body>
+
+</html>
