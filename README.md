@@ -6,3 +6,11 @@ Almacenar todas las utilerias que ofrecezcan una funcionalidad genérica o recur
 - Javascript
 - Typescript
 - css
+- html
+
+
+## Contenidos disponibles
+
+### HTML
+* canvas-graph-edomex: Utilizando canvas para habilitar funciones en los municipios.
+
